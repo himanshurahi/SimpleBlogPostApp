@@ -1,4 +1,4 @@
-<form class="example-form" (ngSubmit)='onSubmit(f)' #f='ngForm' *ngIf="!loading">
+<form class="example-form" (ngSubmit)='onSubmit(f)' #f='ngForm'>
     <!-- {{post | json}} -->
     <mat-card>
         <mat-form-field class="example-full-width">
@@ -21,4 +21,3 @@
     </mat-card>
 
 </form>
-<mat-spinner *ngIf="loading" style="margin: 20% auto;"></mat-spinner>
