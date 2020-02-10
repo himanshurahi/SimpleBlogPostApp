@@ -1,0 +1,36 @@
+<form class="example-form" (ngSubmit)='onSubmit(f)' #f='ngForm' *ngIf="!loading">
+    <!-- {{post | json}} -->
+    <mat-card>
+        <mat-form-field class="example-full-width">
+            <mat-label>Post Title</mat-label>
+            <input matInput placeholder="Post Title" ngModel="{{post?.title}}" #title="ngModel" name="postTitle"
+                required />
+            <mat-error *ngIf="title.invalid">Post Title Can't Be Empty</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Post Body</mat-label>
+            <textarea matInput placeholder="Am Waiting For Body.... :P" ngModel="{{post?.content}}" name="postBody"
+                required></textarea>
+        </mat-form-field>
+
+        <div>
+            <button mat-stroked-button color='accent' type="button" (click)="image.click()">Upload</button>
+            <br><cite *ngIf="Chandler" style="font-size: 13px; color: red;">Image Required</cite>
+            <input type="file"  (change)="onFileSelected($event)" hidden #image required />
+          
+        </div>
+        <!-- {{imagePrew}} -->
+        <div class="image-prew" *ngIf="imagePrew">
+            <img src="{{imagePrew}}" height="100" style="margin-top: 10px;" />
+        </div>
+        <br>
+      
+        <button type="submit" *ngIf="!id" [disabled]="f.invalid || Chandler" mat-raised-button
+            color="accent">{{ Btnloading ? 'Saving..' : 'Save'}}</button>
+        <button type="submit" *ngIf="id" [disabled]="f.invalid || Chandler" mat-raised-button
+            color="accent">{{Btnloading ? 'Updating..' : 'Update'}}</button>
+    </mat-card>
+</form>
+<mat-spinner *ngIf="loading" style="margin: 20% auto;"></mat-spinner>

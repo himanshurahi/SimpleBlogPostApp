@@ -1,0 +1,41 @@
+<mat-accordion *ngIf="!loading">
+    <!-- {{posts | json}}
+    {{isAuth}}
+    {{user.user._id | json}} -->
+    <mat-expansion-panel *ngFor="let post of posts">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{post.title}}
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+                Type your name and age
+            </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        {{post.content}}
+        <mat-action-row *ngIf="isAuth && post.author == user.user._id">
+            <a mat-stroked-button color='primary' [routerLink]="['/edit', post._id]"
+                routerLinkActive="router-link-active">Edit</a>
+            <button mat-stroked-button color='warn' (click)="onDelete(post._id)">Delete</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+    <!-- <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Self aware panel
+            </mat-panel-title>
+            <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+    </mat-expansion-panel> -->
+
+</mat-accordion>
+<mat-paginator  [length]="totalPosts"
+              [pageSize]="postPerPage"
+              [pageSizeOptions]="[1, 2, 5, 10]"
+              (page) = 'onChangePage($event)'
+              >
+</mat-paginator>
+<p style="text-align: center;" *ngIf="posts.length == 0 && !loading">No Posts Yet.</p>
+<mat-spinner *ngIf="loading" style="margin: 20% auto"></mat-spinner>

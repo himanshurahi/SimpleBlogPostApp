@@ -1,0 +1,10 @@
+<mat-toolbar class="mat-elevation-z4" color='primary'>My App
+  <ul>
+      <li><a [routerLink]="['/']" routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }" >Home</a></li>
+      <li><a [routerLink]="['/create']" *ngIf="isAuthenticated" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >Add Post</a></li>
+      <li><a [routerLink]="['/login']" *ngIf="!isAuthenticated" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >Login</a></li>
+      <li><a [routerLink]="['/signup']" *ngIf="!isAuthenticated" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >Signup</a></li>
+      <li *ngIf="isAuthenticated" (click) = 'onLogout()' ><a style="cursor: pointer;">Logout</a></li>
+  </ul>
+
+</mat-toolbar>

@@ -1,0 +1,24 @@
+<form class="example-form" (ngSubmit)='onSubmit(f)' #f='ngForm' *ngIf="!loading">
+    <!-- {{post | json}} -->
+    <mat-card>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" ngModel #email="ngModel" name="email" required email />
+            <mat-error *ngIf="email.invalid">Please Enter Valid Email</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Password" ngModel #password="ngModel" name="password"
+                required />
+            <mat-error *ngIf="password.invalid">Password Can't Be Empty</mat-error>
+        </mat-form-field>
+        <!-- {{imagePrew}} -->
+
+        <button type="submit" [disabled]="f.invalid" mat-raised-button
+            color="accent">{{loginLoad ? 'Please Wait.' : 'Login'}}</button>
+    </mat-card>
+
+</form>
+<mat-spinner *ngIf="loading" style="margin: 20% auto;"></mat-spinner>

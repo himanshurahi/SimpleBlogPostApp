@@ -1,0 +1,19 @@
+ul {
+    width: 70%;
+}
+
+li {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    float: right;
+    font-size: 90%;
+}
+
+.active{
+    color: red;
+}
