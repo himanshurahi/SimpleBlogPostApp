@@ -1,6 +1,7 @@
 const express = require("express");
+require('dotenv').config()
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT
 const mongoose = require("mongoose");
 app.use(express.json());
 var cors = require("cors");
@@ -9,12 +10,13 @@ const userRoutes = require("./routes/users")
 app.use(cors());
 
 app.listen(PORT, () => {
+    console.log(process.env.MONGODB_URL)
   console.log("Server Started On : " + PORT);
 });
 
 //connecting to DB
 mongoose
-  .connect("mongodb://127.0.0.1:27017/mean-api", {
+  .connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })

@@ -25,6 +25,7 @@ export class ListPostsComponent implements OnInit {
   @Input() posts = []
   isAuth;
   user;
+  deleting = false
 
 
   onChangePage(pageData: PageEvent) {
@@ -41,9 +42,11 @@ export class ListPostsComponent implements OnInit {
   }
 
   onDelete(id) {
+    this.deleting = true
     this.postService.deletePost(id).subscribe((data) => {
       this.posts = this.posts.filter(post => {
         return post._id != id
+        this.deleting = false
       })
 
     }, error => {
@@ -66,6 +69,10 @@ export class ListPostsComponent implements OnInit {
       this.loading = false
       this.posts = postData.posts
     }, error => {
+      console.log(error)
+      this.snackbar.open(error.name, 'Ok', {
+        duration: 3000
+      });
       this.posts.push({ postTitle: error.name })
     })
     this.postService.PostAdded.subscribe(data => {
