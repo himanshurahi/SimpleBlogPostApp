@@ -44,9 +44,9 @@ export class ListPostsComponent implements OnInit {
   onDelete(id) {
     this.deleting = true
     this.postService.deletePost(id).subscribe((data) => {
+      this.deleting = false
       this.posts = this.posts.filter(post => {
         return post._id != id
-        this.deleting = false
       })
 
     }, error => {
